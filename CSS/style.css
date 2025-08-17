@@ -1,0 +1,513 @@
+@import url("https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@400;500;600;700;800&family=Tiro+Gurmukhi:ital@0;1&display=swap");
+
+body {
+  height: 100vh;
+  font-family: "Tiro Gurmukhi", serif;
+  background-color: #fef2d7 !important; /* Beige background */
+  position: relative;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+/* Container for falling images */
+#scattered-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  pointer-events: none;
+  z-index: 0; /* Behind page content but above body background */
+}
+
+/* Keyframe for fall animation */
+@keyframes fall {
+  0% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(calc(100vh + 40px)) translateX(var(--drift, 0px))
+      rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.header-bar {
+  background-color: #fde5c8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  position: relative;
+  min-height: 60px; /* consistent height */
+  box-sizing: border-box;
+}
+
+/* Logo always fixed left and vertically centered */
+.header-logo {
+  width: 50px;
+  height: auto;
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 0; /* remove any default spacing */
+}
+
+/* Title always centered */
+.header-bar h5 {
+  color: #3c1c00;
+  font-weight: bold;
+  font-size: 1.2rem;
+  line-height: 1.4;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  flex: 1; /* ensures text stays centered even if logo is present */
+}
+
+/* Logo size */
+.logo {
+  width: 60px;
+}
+
+/* Menu boxes */
+.menu-box {
+  background: linear-gradient(to bottom, #ffe3b3, #ffbb66);
+  background: url("/img/box.png") no-repeat center/cover;
+  /* background-size: cover; */
+  background-size: contain;
+  padding: 15px;
+  text-align: center;
+  color: #4b2e00;
+  transition: transform 0.2s;
+  margin: 10px 0 -72px 90px;
+  width: 422px;
+  height: 436px;
+}
+
+.menu-box:hover {
+  transform: translateY(-5px);
+}
+
+.menu-box img {
+  width: 132px;
+  margin-bottom: 0;
+  margin: 14px 96px 0 0;
+  padding: 15px 0 0 0;
+}
+
+.menu-box p {
+  margin: 12px 0 0 1px;
+  font-weight: bold;
+  font-size: 14px;
+  padding: 0 99px 0 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Hero Card Layout */
+.hero .card {
+  background: #ffe3b3;
+  border-radius: 24px;
+  width: auto;
+}
+
+.hero .guru-card {
+  display: flex;
+  align-items: center;
+  background: #ffe3b3;
+  border-radius: 24px;
+  padding: 15px;
+  opacity: 0.8;
+}
+
+/* Guru Image - default mobile friendly */
+.guru-img {
+  width: 90px;
+  height: auto;
+}
+
+/* Hero Text Centering */
+.hero p {
+  color: #4b2e00;
+  font-weight: 500;
+}
+
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero .btn {
+  background-color: #ffbb66;
+  border-radius: 12px;
+  width: 90px;
+}
+.btn a {
+  color: #3c1c00;
+  text-decoration: none;
+}
+
+/* Small Button */
+.small-btn {
+  padding: 4px 10px;
+  font-size: 0.85rem;
+}
+
+/* contact */
+.contact {
+  position: relative;
+}
+
+.heading {
+  background-color: #fdd9a1;
+  padding: 6px 12px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.input-bg {
+  background-color: rgba(253, 217, 161, 0.6);
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.input-bg:focus {
+  background-color: #fdd9a1;
+  outline: none;
+  box-shadow: none;
+}
+
+/* Glassmorphism card effect */
+.glass-card {
+  background: rgba(255, 255, 255, 0.13);
+  backdrop-filter: blur(11px);
+  -webkit-backdrop-filter: blur(11px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 0 18px 9px rgba(255, 255, 255, 0.9);
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.8),
+    transparent
+  );
+}
+
+.glass-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.8),
+    transparent,
+    rgba(255, 255, 255, 0.3)
+  );
+}
+
+/* Submit Button */
+.submit-btn {
+  display: block;
+  margin: 0 auto;
+  padding: 0.5rem 2rem;
+  border-radius: 50px;
+  min-width: fit-content;
+  background-color: #fdd9a1;
+}
+
+.submit-btn:hover {
+  background-color: #fdd9a1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+  .glass-card {
+    padding: 1.5rem;
+    border-radius: 24px;
+  }
+}
+
+/* ===============================
+   Unified Responsive Styles
+   =============================== */
+@media (max-width: 576px) {
+  .guru-img {
+    width: clamp(70px, 12vw, 150px); /* Flexible size */
+    position: relative;
+    top: 0;
+  }
+
+  .header-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 10px;
+    gap: 8px;
+  }
+
+  .header-logo {
+    /* position: relative; */
+    top: 0;
+    transform: none;
+    margin-bottom: 5px;
+    left: 0;
+  }
+
+  .header-bar h5 {
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    text-align: center;
+  }
+
+  .menu-box {
+    width: 244px;
+    height: clamp(300px, 55vw, 350px);
+    padding: 10px;
+    margin: 10px 0 -50px 0;
+    background-size: contain;
+  }
+
+  .menu-box img {
+    width: clamp(80px, 15vw, 100px);
+    margin: 4px 0 0 35px;
+    display: block;
+  }
+
+  .menu-box p {
+    margin: 14px 56px 0 0;
+    text-align: center;
+    padding: 0 5% 0 0; /* percentage-based for flexibility */
+  }
+
+  .hero .guru-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    opacity: 0.8;
+  }
+
+  .hero-text {
+    display: flex;
+    align-items: center;
+    text-align: center;
+  }
+
+  .small-btn {
+    font-size: clamp(0.8rem, 1.5vw, 1rem);
+    padding: 3px 8px;
+  }
+}
+
+/* Teaching */
+.page-header {
+  background-color: #fde5c8;
+  width: 100%;
+  max-width: 339px;
+  margin: 30px auto 20px;
+  box-sizing: border-box;
+  text-align: center;
+  border-radius: 6px;
+}
+.sub-page-header {
+  background-color: #fde5c8;
+  width: 100%;
+  max-width: 100px;
+  margin: 30px auto 20px;
+  box-sizing: border-box;
+  text-align: center;
+  border-radius: 6px;
+}
+.sub-page-title {
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin: 20px 0;
+  color: #ff6600;
+}
+
+.kesari {
+  color: #ff6600;
+}
+small {
+  text-align: right;
+  margin: 0 0 0 448px;
+}
+
+.page-title {
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin: 20px 0;
+  color: #ff6600;
+}
+
+/* Image styling */
+.content-img {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+/* Content box styling */
+.content-box {
+  background-color: rgba(251, 231, 196, 1); /* same color as in your image */
+  border-radius: 15px; /* rounded corners */
+  border: 1px solid rgba(108, 0, 0, 1);
+  padding: 25px 20px; /* padding inside the box */
+  margin: 0 auto 30px auto; /* center the box and add bottom margin */
+  max-width: 700px; /* maximum width for large screens */
+  line-height: 1.7;
+  font-size: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* subtle shadow like in your image */
+}
+
+.content-box h2 {
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #ff6600;
+}
+
+.content-box p {
+  margin-bottom: 10px;
+  text-align: justify; /* makes text wrap nicely inside the box */
+  margin-top: 11px;
+}
+
+@media (max-width: 768px) {
+  .page-title {
+    font-size: 1.4rem;
+  }
+  .page-header {
+    /* background-color: #fde5c8; */
+    width: 60%;
+  }
+
+  .content-box {
+    padding: 15px;
+    font-size: 0.95rem;
+    max-width: 95%; /* nearly full width on mobile */
+  }
+  .content-img {
+    max-width: 80vw;
+  }
+  small {
+    margin: 0 0 0 130px;
+  }
+  /* .kesari {
+    margin: 0 0 0 10px;
+  } */
+}
+/* History */
+
+.history .content-img {
+  display: block;
+  margin: 20px auto;
+  max-width: 220px;
+  border-radius: 12px;
+}
+
+/* Content Box */
+.history .content-box {
+  background-color: #fbe7c4;
+  border: 1px solid #6c0000;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 0 auto 20px;
+  max-width: 720px;
+  font-size: 1rem;
+  line-height: 1.6;
+  text-align: justify;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Buttons section */
+.btn-list {
+  max-width: 720px;
+  margin: 0 auto 40px;
+}
+.btn-custom {
+  background: #fdd9a1;
+  border: 2px solid #ff6600;
+  color: #ff6600;
+  border-radius: 30px;
+  padding: 10px 15px;
+  text-align: left;
+  width: 100%;
+  margin-bottom: 12px;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+.btn-custom:hover {
+  background: #fdd9a1;
+  color: #ff6600;
+}
+.history .page-header {
+  max-width: 142px;
+}
+.history .yatraimg {
+  display: block;
+  margin: 20px auto;
+  max-width: 315px;
+  border-radius: 12px;
+}
+
+/* Viah */
+.viah .content-img {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 504px;
+  height: 385px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .history .content-box {
+    padding: 15px;
+    font-size: 0.95rem;
+  }
+  .history .content-img {
+    max-width: 160px;
+  }
+  .history .page-header {
+    max-width: 108px;
+  }
+  .history .yatraimg {
+    max-width: 279px;
+  }
+  .viah .content-img {
+    max-width: 293px;
+    max-height: 263px;
+  }
+}
