@@ -19,7 +19,7 @@
 
     <!-- Header -->
     <section class="header">
-      <div class="header-bar d-flex align-items-center py-2">
+      <div class="header-bar d-flex align-items-center py-2 ">
         <a href="index.html">
           <img src="img/logo.png" alt="Logo" class="header-logo me-2" />
         </a>
@@ -30,30 +30,37 @@
       </div>
     </section>
 
-    <section class="hero">
-      <div class="card guru-card mx-auto mt-3">
-        <div class="row align-items-center g-3">
-          <!-- LEFT: Photo -->
-          <div class="col-auto">
-            <img
-              src="img/guru sahib.png"
-              class="guru-img"
-              alt="Guru Tegh Bahadur Ji"
-            />
-          </div>
-          <div class="col">
-            <div class="hero-text text-center">
-              <p class="mt-3 mb-2">
-                ਸ਼੍ਰੀ ਗੁਰੂ ਤੇਗ ਬਹਾਦਰ ਸਾਹਿਬ ਜੀ ਦੀ ਸ਼ਹੀਦੀ ਵਿਰਾਸਤ ਬਾਰੇ ਜਾਣਕਾਰੀ।
-              </p>
-              <button class="btn fw-bold btn-sm">
-                <a href="#"> ਹੋਰ ਜਾਣੋ</a>
-              </button>
-            </div>
-          </div>
-        </div>
+   <section class="hero py-6">
+  <div class="bg-[#FF8800]/20 mx-auto mt-3 max-w-3xl rounded-2xl shadow-lg p-2">
+    <div class="flex flex-row items-center gap-4">
+      
+      <!-- LEFT: Photo -->
+      <div class="flex-shrink-0">
+        <img 
+          src="img/guru sahib.png" 
+          alt="Guru Tegh Bahadur Ji" 
+          class="guru-img w-28 h-28 md:w-40 md:h-40 object-contain"
+        />
       </div>
-    </section>
+
+      <!-- RIGHT: Text + Button -->
+      <div class="flex-1 text-center">
+        <p class="mt-3 mb-2 text-[#785D23] text-base md:text-lg font-medium">
+          ਸ਼੍ਰੀ ਗੁਰੂ ਤੇਗ ਬਹਾਦਰ ਸਾਹਿਬ ਜੀ ਦੀ ਸ਼ਹੀਦੀ ਵਿਰਾਸਤ ਬਾਰੇ ਜਾਣਕਾਰੀ।
+        </p>
+        <a 
+          href="#"
+          class="inline-block px-5 py-2 mt-2 bg-[#FF8800] border-2 border-white text-white font-semibold text-sm rounded-full transition hover:bg-[#e67300]"
+        >
+          ਹੋਰ ਜਾਣੋ
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
     <!-- Menu Grid -->
    <section
   class="text-[#FF8800] underline decoration-[#FF8800] 
