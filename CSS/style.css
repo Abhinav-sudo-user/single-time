@@ -511,3 +511,21 @@ small {
     max-height: 263px;
   }
 }
+
+.custom-box{
+  background-color: rgba(251, 231, 196, 0.6); /* #FBE7C4 with 60% opacity */
+  padding: 0.5rem; /* p-2 = 8px = 0.5rem */
+  border: 1px solid rgb(88, 88, 88); /* border-3 + border-black */
+  border-radius: 1rem; /* rounded = 4px radius */
+  margin: 1em;
+}
+@media (min-width: 1024px) {
+  .custom-box {
+    border-radius: 1rem; /* more curved = 16px */
+  }
+}
+
+.custom-image {
+  border: 1.5em solid rgba(255, 136, 0, 0.5); /* #FF8800 with 50% opacity */
+  border-radius: 12px; /* adjust value for more/less rounding */
+}
